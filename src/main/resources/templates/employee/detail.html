@@ -5,7 +5,7 @@
     <title>日報管理システム</title>
 </head>
 <body>
-    <h1>id:{id}の従業員情報 詳細ページ</h1>
+    <h1>id:<span th:text="${employee.id}"></span>の従業員情報 詳細ページ</h1>
     <form method="post" action="/employee/detail/{id}/" th:object="${employee}">
         <table>
             <tbody>

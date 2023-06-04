@@ -18,6 +18,7 @@ public class Authentication {
         一般, 管理者
     }
     /** 従業員テーブルのID */
+    @Id //主キーを表すアノテーション
     @Column(length = 20, nullable = false)
     private String code;
 
@@ -30,8 +31,6 @@ public class Authentication {
     private String role;
     
     /** 社員番号 */
-    @Id //主キーを表すアノテーション
-    private Integer employee_id;
     @OneToOne
     @JoinColumn(name="employee_id", referencedColumnName="id")
     private Employee employee;

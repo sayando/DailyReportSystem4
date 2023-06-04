@@ -6,10 +6,13 @@
 </head>
 <body>
     <h1>Employee 削除</h1>
-    <p>削除するのコードを指定してください。</p>
-    <form action="#" method="post" th:action="@{/employee/delete}">
-        <table th:object="${employee}">
-            <tr><th>コード</th><td><input name="code" th:value="${code}" ></td></tr>
+    <p>削除するコードを指定してください。</p>
+    <form action="#" method="post" th:action="@{/employee/delete/{id}}" th:object="${employee}">
+        <table>
+            <tr>
+            <th>コード</th>
+            <td th:text="${employee.code}"></td>
+            </tr>
         </table>
         <button type="submit">送信</button>
         <a th:href="@{'/employee/list'}">一覧に戻る</a>

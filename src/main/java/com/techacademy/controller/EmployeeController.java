@@ -51,7 +51,7 @@ public class EmployeeController {
     }*/
 
     /** User削除処理 */
-    @GetMapping(value = { "/delete", "/delete/{id}/" })
+    @GetMapping(value = { "/delete", "/delete/{id}" })
     public String deleteEmployee(@PathVariable(name = "id", required = false) Integer id, Model model) {
         if (id != null) {
             // サービスから従業員情報を取得
@@ -61,8 +61,8 @@ public class EmployeeController {
             // 更新した従業員情報を保存
             service.saveEmployee(employee);
         }
-        // 詳細ページのビュー名を返す
-        return "employee/detail";
+        // リダイレクトして従業員一覧ページに戻る
+        return "redirect:/employee/list";
     }
     /** User登録画面を表示 */
     @GetMapping("/register")
