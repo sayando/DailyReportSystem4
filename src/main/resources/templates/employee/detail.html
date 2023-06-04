@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>日報管理システム</title>
+</head>
+<body>
+    <h1>id:{id}の従業員情報 詳細ページ</h1>
+    <form method="post" action="/employee/detail/{id}/" th:object="${employee}">
+        <table>
+            <tbody>
+                <tr>
+                    <th>社員番号</th>
+                    <td th:text="${employee.id}"></td>
+                </tr>
+                <tr>
+                    <th>氏名</th>
+                    <td th:text="${employee.name}"></td>
+                </tr>
+                <tr>
+                    <th>権限</th>
+                    <!-- <td th:text="${employee.authentication.role}"></td> -->
+                </tr>
+                <tr>
+                    <th>登録日時</th>
+                    <td th:text="${#temporals.format(employee.createdAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                </tr>
+                <tr>
+                    <th>更新日時</th>
+                    <td th:text="${#temporals.format(employee.updatedAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <a th:href="@{/employee/update/{id}(id=${employee.id})}">この従業員情報を編集する</a>
+    <a th:href="@{/employee/list}">一覧に戻る</a>
+</body>
+</html>
