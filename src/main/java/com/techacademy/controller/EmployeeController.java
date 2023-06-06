@@ -87,6 +87,7 @@ public class EmployeeController {
         // 従業員情報のセット
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
+        employee.setDeleteFlag(0);
      
         // AuthenticationのEmployeeに関連付ける
         employee.getAuthentication().setEmployee(employee);

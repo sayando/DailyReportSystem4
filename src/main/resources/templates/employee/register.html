@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>従業員新規登録ページ</h1>
-    <form method="post" action="/employee/register" th:object="${employee}">
+    <form method="post" th:action="@{/employee/register}" th:object="${employee}">
       <label for="authentication.code">社員番号:</label>
       <input type="text" th:field="*{authentication.code}"><br><br>
 
