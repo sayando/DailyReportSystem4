@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 import lombok.Data;
 
@@ -26,34 +28,24 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    private Authentication authentication;
-    
     @Column(length = 20, nullable = false)
     /** 名前。20桁。null不許可 */
     private String name;
 
     /** 削除フラグ */
-    private int deleteFlag;
-    public void setDeleteFlag(int deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
-
-    /** 年齢 */
-    private Integer age;
+    @Column(nullable = false)
+    private Integer deleteFlag;
 
     /** 登録日時 */
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     /** 更新日時 */
-    @Column(name = "updated_at")
+    @Column(nullable = false)
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+  
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Authentication authentication;
 }

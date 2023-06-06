@@ -2,6 +2,8 @@ package com.techacademy.controller;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,13 @@ import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
 
 @Controller
+
 @RequestMapping("employee")
+
 public class EmployeeController {
     private final EmployeeService service;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     public EmployeeController(EmployeeService service) {
         this.service = service;
     }
@@ -73,6 +79,7 @@ public class EmployeeController {
     }
 
     /** Employee登録処理 */
+    
     @PostMapping("/register")
     public String postEmployee(@ModelAttribute Employee employee, Model model) {
         // 現在の日時を取得
@@ -80,8 +87,11 @@ public class EmployeeController {
         // 従業員情報のセット
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
+     
         // AuthenticationのEmployeeに関連付ける
         employee.getAuthentication().setEmployee(employee);
+       // パスワードを暗号化して設定
+        employee.getAuthentication().setPassword(passwordEncoder.encode(employee.getAuthentication().getPassword()));
         // 更新（追加）
         service.saveEmployee(employee);
         System.out.println(service.getEmployeeList().get(0).getName());

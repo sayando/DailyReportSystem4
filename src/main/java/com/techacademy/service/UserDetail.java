@@ -1,4 +1,4 @@
-/*package com.techacademy.service;
+package com.techacademy.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,12 +14,12 @@ public class UserDetail implements UserDetails {
     private final Employee employee;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetail(Employee user) {
-        this.employee = user;
+    public UserDetail(Employee employee) {
+        this.employee = employee;
         this.authorities = new ArrayList<GrantedAuthority>();
     }
 
-    public Employee getUser() {
+    public Employee getEmployee() {
         return employee;
     }
 
@@ -61,4 +61,4 @@ public class UserDetail implements UserDetails {
         // ユーザーが有効であればtrueを返す
         return true;
     }
-}*/
+}
