@@ -26,7 +26,7 @@
   </p>
 
   <!-- 「投稿」ボタン -->
-  <form th:action="@{/employee/{id}/updateEmployee(id=${employee.id})}" method="post">
+  <form th:action="@{/employee/update/{id}(id=${employee.id})}" method="post">
     <input type="hidden" name="_method" value="put" />
     <button type="submit">投稿</button>
   </form>
