@@ -63,7 +63,6 @@ public class EmployeeController {
     /** User登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
-        
         // Employee登録画面に遷移
         return "employee/register";
     }

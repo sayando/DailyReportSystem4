@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -41,9 +43,13 @@ public class Report {
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
-    @Column(name = "created_at")
+    /** 登録日時 */
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    /** 更新日時 */
+    @Column(nullable = false)
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
