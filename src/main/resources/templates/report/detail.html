@@ -8,24 +8,14 @@
     <h1>日報 詳細ページ</h1>
     <form method="post" action="/report/detail/{id}/" th:object="${report}">
         <table>
-            <thead>
-                <tr>
-                    <th>氏名</th>
-                    <th>日付</th>
-                    <th>タイトル</th>
-                    <th>内容</th>
-                    <th>登録日時</th>
-                    <th>更新日時</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <th>氏名</th>
-                    <td th:text="${report.name}"></td>
+                    <td th:text="${employee.name}"></td>
                 </tr>
                 <tr>
                     <th>日付</th>
-                    <td th:text="${report.date}"></td>
+                    <td th:text="${report.reportDate}"></td>
                 </tr>
                 <tr>
                     <th>タイトル</th>
@@ -37,11 +27,11 @@
                 </tr>
                 <tr>
                     <th>登録日時</th>
-                    <td th:text="${#temporals.format(report.created_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                    <td th:text="${employee.createdAt}"></td>
                 </tr>
                 <tr>
                     <th>更新日時</th>
-                    <td th:text="${#temporals.format(report.updated_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                    <td th:text="${employee.updatedAt}"></td>
                 </tr>
             </tbody>
         </table>

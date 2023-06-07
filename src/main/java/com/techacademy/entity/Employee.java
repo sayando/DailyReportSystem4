@@ -2,12 +2,15 @@ package com.techacademy.entity;
 
 import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,6 +18,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -46,6 +51,8 @@ public class Employee {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
   
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Report> reports;
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;
 }

@@ -26,7 +26,7 @@ public class EmployeeController {
         this.service = service;
     }
 
-    /** 一覧画面を表示 */
+    /** 従業員一覧画面を表示 */
     @GetMapping("/list")
     public String getList(Model model) {
         // 全件検索結果をModelに登録
@@ -45,16 +45,6 @@ public class EmployeeController {
         // employee/detail.htmlに画面遷移
         return "employee/detail";
     }
-
-    /* ----- 更新（追加） -----
-    @PostMapping("/detail")
-    public String postEmployee(@RequestParam("id") Integer id, @RequestParam("name") String name,
-            @RequestParam("dalete_flag") int delete_flag, Model model) {
-        // 更新（追加）
-        service.updateEmployee(id, name, delete_flag);
-        // 一覧画面にリダイレクト
-        return "redirect:/employee/list";
-    }*/
 
     /** User削除処理 */
     @GetMapping(value = { "/delete", "/delete/{id}" })

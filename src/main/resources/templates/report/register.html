@@ -3,27 +3,37 @@
 <head>
     <meta charset="utf-8">
     <title>日報管理システム</title>
-    <link rel="stylesheet" th:href="@{/css/report/register.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 <body>
     <h1>日報新規登録ページ</h1>
     <form method="post" th:action="@{/report/register}" th:object="${report}">
         <label for="date">日付</label>
-        <input type="text" th:field="*{reportDate}">
-        <br>
+         <input type="date" id="datepicker" th:field="*{reportDate}" autocomplete="off">
+        <br><br>
         <p>氏名</p>
-        <br>
-        <input type="text" th:value="${employee.name}" readonly>
-        <br>
+        <span th:text="${employee.name}"></span>
+        <br><br>
         <label for="title">タイトル</label>
         <input type="text" th:field="*{title}">
-
+        <br><br>
         <label for="content">内容</label>
-        <input type="text" th:field="*{content}">
-        <br>
-        <br>
+        <textarea th:field="*{content}" rows="5"></textarea>
+        <br><br>
         <input type="submit" value="投稿">
         <a th:href="@{/report/list}">一覧に戻る</a>
     </form>
+    <script>
+        $(document).ready(function() {
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
 </body>
 </html>

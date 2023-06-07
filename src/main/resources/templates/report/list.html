@@ -3,27 +3,26 @@
 <head>
     <meta charset="utf-8">
     <title>日報管理システム</title>
-    <link rel="stylesheet" th:href="@{/css/user/list.css}">
+    <link rel="stylesheet" th:href="@{/css/report/list.css}">
 </head>
 <body>
-    <h1>User情報管理システム</h1>
-    <h2>User一覧(全件)</h2>
-    <a th:href="@{/report/register}">新規日報の登録</a>
+    <h1>日報一覧</h1>
+   
     <table>
         <tr>
-            <th>ID</th>
-            <th>名前</th>
-            <th>性別</th>
-            <th>年齢</th>
-            <th>メールアドレス</th>
+            <th>氏名</th>
+            <th>日付</th>
+            <th>タイトル</th>
+            <th>操作</th>
         </tr>
-        <tr th:each="user : ${userlist}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.gender}"></td>
-            <td th:text="${user.age}"></td>
-            <td th:text="${user.email}"></td>
+        <tr th:each="report : ${reportlist}">
+            <td th:text="${employee.name}"></td>
+            <td th:text="${report_date}"></td>
+            <td th:text="${report.title}"></td>
+            <td><a th:href="@{/report/detail/{id}/(id=${report.id})}">詳細を見る</a></td>
         </tr>
     </table>
+    <p th:if="${reportlist != null}" th:text="'全' + ${reportlist.size()} + '件'"></p>
+     <a th:href="@{/report/register}">新規日報の登録</a>
 </body>
 </html>
