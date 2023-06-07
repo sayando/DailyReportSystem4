@@ -19,7 +19,7 @@
             <tbody>
                 <tr>
                     <th>氏名</th>
-                    <td th:text="${employee.name}"></td>
+                    <td th:text="${report.employee.name}"></td>
                 </tr>
                 <tr>
                     <th>日付</th>
@@ -44,9 +44,9 @@
             </tbody>
         </table>
     </form>
-    <div th:if="${report.employee_id == authentication.employee_id}">
-        <a th:href="@{/report/update/{reportId}(reportId=${id})}">この日報を編集する</a>
-    </div>
+    <div th:if="${report.employee.id == authentication.employee_id}">
+    <a th:href="@{/report/update/{reportId}(reportId=${id})}">この日報を編集する</a>
+  </div>
     <a th:href="@{/report/list}">一覧に戻る</a>
 </body>
 </html>

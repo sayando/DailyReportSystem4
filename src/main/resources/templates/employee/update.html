@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>従業員情報編集</title>
+  <nav>
+        <ul>
+            <li><a th:href="@{/employee/list}">従業員管理</a></li>
+            <li><a th:href="@{/report/list}">日報管理</a></li>
+            <form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+        </ul>
+    </nav>
 </head>
 <body>
    <h1>id:<span th:text="${employee.id}"></span>の従業員情報 編集ページ</h1>

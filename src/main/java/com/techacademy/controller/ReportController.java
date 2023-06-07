@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.service.ReportService;
@@ -30,15 +31,14 @@ public class ReportController {
         return "report/list";
     }
 
-    @GetMapping(value = { "/detail", "/detail/{id}/" })
+    @GetMapping(value = { "/detail", "/detail/{id}" })
     public String getReport(@PathVariable(name = "id", required = false) Integer id, Model model,@AuthenticationPrincipal UserDetail user) {
         Report report = id != null ? reportService.getReport(id) : new Report();
         model.addAttribute("employee", user.getEmployee());
         model.addAttribute("report", report);
         return "report/detail";
     }
-
-
+    
     @GetMapping("/register")
     public String getRegister(@AuthenticationPrincipal UserDetail user, Model model) {
         Report report = new Report();
@@ -48,10 +48,11 @@ public class ReportController {
     }
 
     @PostMapping("/register")
-    public String postReport(@ModelAttribute Report report, Model model) {
-        reportService.saveReport(report);
-        Employee employee = report.getEmployee();
+    public String postReport(@ModelAttribute Report report, @AuthenticationPrincipal UserDetail user, Model model) {
+        Employee employee = user.getEmployee(); 
+        report.setEmployee(employee); 
         model.addAttribute("employee", employee);
+        reportService.saveReport(report);
         return "redirect:/report/list";
     }
 

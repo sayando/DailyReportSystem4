@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.repository.ReportRepository;
 
@@ -26,6 +27,11 @@ public class ReportService {
     /** 指定されたIDに基づいて日報を取得する */
     public Report getReport(Integer id) {
         return reportRepository.findById(id).orElse(null);
+    }
+    
+    /** 指定された従業員の日報を取得する */
+    public List<Report> getReportsByEmployee(Employee employee) {
+        return reportRepository.findByEmployee(employee);
     }
     
     /** 日報の登録を行う */
