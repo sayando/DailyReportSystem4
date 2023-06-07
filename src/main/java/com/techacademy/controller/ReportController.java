@@ -56,8 +56,9 @@ public class ReportController {
     }
 
     @GetMapping("/update/{id}")
-    public String getUpdate(@PathVariable("id") Integer id, Model model) {
+    public String getUpdate(@PathVariable("id") Integer id, @AuthenticationPrincipal UserDetail user, Model model) {
         Report report = reportService.getReport(id);
+        model.addAttribute("employee", user.getEmployee());
         model.addAttribute("report", report);
         return "report/update";
     }
